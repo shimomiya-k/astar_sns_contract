@@ -1,5 +1,7 @@
 use crate::metadata::*;
-use ink_env::{AccountId, Hash};
+use ink_env::AccountId;
+use ink_prelude::string::String;
+use ink_prelude::string::ToString;
 use ink_prelude::vec::Vec;
 
 use crate::astar_sns_contract::AstarSnsContract;
@@ -9,9 +11,9 @@ impl AstarSnsContract {
     pub fn release_post_fn(
         &mut self,
         account_id: AccountId,
-        description: Hash,
-        created_time: Hash,
-        post_img_url: Hash,
+        description: String,
+        created_time: String,
+        post_img_url: String,
     ) {
         // 指定されたウォレットアドレスに紐づいたプロフィール
         let profile_info: Profile = self.profile_map.get(&account_id).unwrap();
@@ -20,7 +22,7 @@ impl AstarSnsContract {
         self.post_map.insert(
             &(self.post_map_counter),
             &Post {
-                name: profile_info.name.unwrap_or(Hash::default()),
+                name: profile_info.name.unwrap_or("unknown".to_string()),
                 user_id: profile_info.user_id,
                 created_time,
                 img_url: post_img_url,

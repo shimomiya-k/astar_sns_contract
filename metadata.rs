@@ -1,4 +1,5 @@
-use ink_env::{AccountId, Hash};
+use ink_env::AccountId;
+use ink_prelude::string::String;
 use ink_prelude::vec::Vec;
 use ink_storage::traits::{PackedLayout, SpreadLayout, StorageLayout};
 
@@ -6,12 +7,12 @@ use ink_storage::traits::{PackedLayout, SpreadLayout, StorageLayout};
 #[derive(Debug, Clone, scale::Encode, scale::Decode, SpreadLayout, PartialEq, PackedLayout)]
 #[cfg_attr(feature = "std", derive(scale_info::TypeInfo, StorageLayout))]
 pub struct Post {
-    pub name: Hash,
+    pub name: String,
     pub user_id: AccountId,
-    pub created_time: Hash,
-    pub img_url: Hash,
-    pub user_img_url: Hash,
-    pub description: Hash,
+    pub created_time: String,
+    pub img_url: String,
+    pub user_img_url: String,
+    pub description: String,
     pub num_of_likes: u128,
     pub post_id: u128,
 }
@@ -24,8 +25,8 @@ pub struct Profile {
     pub follower_list: Vec<AccountId>,
     pub friend_list: Vec<AccountId>,
     pub user_id: AccountId,
-    pub name: Option<Hash>,
-    pub img_url: Option<Hash>,
+    pub name: Option<String>,
+    pub img_url: Option<String>,
     pub message_list_id_list: Vec<u128>,
     pub post_id_list: Vec<u128>,
 }
@@ -34,7 +35,7 @@ pub struct Profile {
 #[derive(Debug, Clone, scale::Encode, scale::Decode, SpreadLayout, PartialEq, PackedLayout)]
 #[cfg_attr(feature = "std", derive(scale_info::TypeInfo, StorageLayout))]
 pub struct Message {
-    pub message: Hash,
+    pub message: String,
     pub sender_id: AccountId,
-    pub created_time: Hash,
+    pub created_time: String,
 }

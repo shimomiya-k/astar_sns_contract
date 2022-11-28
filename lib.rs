@@ -13,6 +13,7 @@ use ink_lang as ink;
 mod astar_sns_contract {
     use ink_env::debug_println;
     use ink_lang::codegen::Env;
+    use ink_prelude::string::String;
     use ink_prelude::vec::Vec;
     use openbrush::storage::Mapping;
     // use openbrush::test_utils::*;
@@ -48,7 +49,12 @@ mod astar_sns_contract {
 
         // 投稿関数
         #[ink(message)]
-        pub fn release_post(&mut self, description: Hash, created_time: Hash, post_img_url: Hash) {
+        pub fn release_post(
+            &mut self,
+            description: String,
+            created_time: String,
+            post_img_url: String,
+        ) {
             let caller: AccountId = self.env().caller();
             self.release_post_fn(caller, description, created_time, post_img_url);
         }
@@ -75,7 +81,12 @@ mod astar_sns_contract {
 
         // メッセージ送信関数
         #[ink(message)]
-        pub fn send_message(&mut self, message: Hash, message_list_id: u128, created_time: Hash) {
+        pub fn send_message(
+            &mut self,
+            message: String,
+            message_list_id: u128,
+            created_time: String,
+        ) {
             let caller: AccountId = Self::env().caller();
             self.send_message_fn(message, message_list_id, caller, created_time);
         }
@@ -104,7 +115,7 @@ mod astar_sns_contract {
 
         // プロフィールの名前と画像を設定する関数
         #[ink(message)]
-        pub fn set_profile_info(&mut self, name: Hash, img_url: Hash) {
+        pub fn set_profile_info(&mut self, name: String, img_url: String) {
             let caller: AccountId = self.env().caller();
             self.set_profile_info_fn(caller, name, img_url);
         }

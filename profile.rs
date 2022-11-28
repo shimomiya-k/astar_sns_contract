@@ -1,5 +1,6 @@
 use crate::metadata::*;
-use ink_env::{AccountId, Hash};
+use ink_env::AccountId;
+use ink_prelude::string::String;
 use ink_prelude::vec::Vec;
 
 use crate::astar_sns_contract::AstarSnsContract;
@@ -28,7 +29,7 @@ impl AstarSnsContract {
     }
 
     // プロフィールの名前と画像のURLを設定
-    pub fn set_profile_info_fn(&mut self, account_id: AccountId, name: Hash, img_url: Hash) {
+    pub fn set_profile_info_fn(&mut self, account_id: AccountId, name: String, img_url: String) {
         let mut profile: Profile = self.profile_map.get(&account_id).unwrap();
         profile.name = Some(name);
         profile.img_url = Some(img_url);

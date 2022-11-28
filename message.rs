@@ -1,5 +1,6 @@
 use crate::metadata::*;
-use ink_env::{AccountId, Hash};
+use ink_env::AccountId;
+use ink_prelude::string::String;
 use ink_prelude::vec::Vec;
 
 use crate::astar_sns_contract::AstarSnsContract;
@@ -8,10 +9,10 @@ impl AstarSnsContract {
     // メッセージ送信関数
     pub fn send_message_fn(
         &mut self,
-        message: Hash,
+        message: String,
         message_list_id: u128,
         sender_id: AccountId,
-        created_time: Hash,
+        created_time: String,
     ) {
         // 指定したメッセージリストのidに紐づいたメッセージリストを取得
         let mut message_list: Vec<Message> = self
